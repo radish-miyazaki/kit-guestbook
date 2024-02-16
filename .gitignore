@@ -17,3 +17,6 @@ modules/
 .clj-kondo/.cache/
 .calva/output-window/
 .lsp/.cache/
+
+guestbook_dev.db
+
