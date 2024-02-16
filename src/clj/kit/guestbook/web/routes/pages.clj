@@ -1,5 +1,6 @@
 (ns kit.guestbook.web.routes.pages
   (:require
+   [hiccup.core :as h]
    [integrant.core :as ig]
    [kit.guestbook.web.controllers.guestbook :as guestbook]
    [kit.guestbook.web.middleware.exception :as exception]
@@ -19,9 +20,19 @@
   (layout/render request "home.html" {:messages (query-fn :get-messages [])
                                       :errors {:errors flash}}))
 
+(defn about
+  [_]
+  {:status 200
+   :headers {"Content-Type" "text/html; charset=utf-8"}
+   :body   (h/html [:html
+                    [:head [:title "About"]]
+                    [:body [:h1 "About"]
+                     [:p "This is a simple guestbook application."]]])})
+
 ;; Routes
 (defn page-routes [opts]
   [["/" {:get (partial home opts)}]
+   ["/about" {:get about}]
    ["/save" {:post (partial guestbook/save-message! opts)}]])
 
 (defn route-data [opts]
