@@ -2,12 +2,14 @@
   (:require
    [clojure.tools.logging :as log]
    [integrant.core :as ig]
+   [kit.edge.db.sql.conman]
+   [kit.edge.db.sql.migratus]
    [kit.edge.server.undertow]
    [kit.guestbook.config :as config]
    [kit.guestbook.env :refer [defaults]]
    [kit.guestbook.web.handler]
-   [kit.guestbook.web.routes.api] 
-    [kit.guestbook.web.routes.pages])
+   [kit.guestbook.web.routes.api]
+   [kit.guestbook.web.routes.pages])
   (:gen-class))
 
 ;; log uncaught exceptions in threads
