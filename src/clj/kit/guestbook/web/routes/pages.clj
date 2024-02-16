@@ -20,9 +20,9 @@
                                       :errors {:errors flash}}))
 
 ;; Routes
-(defn page-routes [_opts]
-  [["/" {:get home}]
-   ["/save" {:post guestbook/save-message!}]])
+(defn page-routes [opts]
+  [["/" {:get (partial home opts)}]
+   ["/save" {:post (partial guestbook/save-message! opts)}]])
 
 (defn route-data [opts]
   (merge
